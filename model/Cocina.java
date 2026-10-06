@@ -1,16 +1,18 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Cocina {
-    private Pizza[] pizza = new Pizza[5];
+    private ArrayList<Pizza> pizza; //Se convierte en un ArrayList
     private Orden[] orden = new Orden[5];
 
-    public void cocinarPizza(){
-        System.out.println("se cocina, "+orden[0]);
+    //Se mueve a CocinaController para que lo maneje
+    
+    public ArrayList<Pizza> getPizzas() {
+        return pizza;
     }
-    public void empaquetarPizzaYQuitarOrdenPizza(){
-        System.out.println("se quita"+ orden[0] + "y se envia a "+ pizza[0]); //??? no entiendo mi logica de mi yo del pasado
+    public Orden[] getOrdenes() {
+        return orden;
     }
-    public void recibirOrdenCliente(){
-        
-    }
+
 }

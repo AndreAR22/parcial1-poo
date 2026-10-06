@@ -4,10 +4,12 @@ import constants.Masa;
 import constants.Salsa;
 import constants.Toppings;
 
+import java.util.ArrayList;
+
 public class Orden {
     private Masa masa;
     private Salsa salsa;
-    private Toppings[] toppings;
+    private ArrayList<Toppings> toppings; //se cambia a arrayList
 
     public Masa getMasa() {
         return masa;
@@ -17,11 +19,11 @@ public class Orden {
         return salsa;
     }
 
-    public Toppings[] getToppings() {
+    public ArrayList<Toppings> getToppings() {
         return toppings;
     }
 
-    public Orden(Masa masa, Salsa salsa, Toppings[] toppings) {
+    public Orden(Masa masa, Salsa salsa, ArrayList<Toppings> toppings) {
         this.masa = masa;
         this.salsa = salsa;
         this.toppings = toppings;
