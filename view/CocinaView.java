@@ -12,6 +12,8 @@ public class CocinaView {
     private void showOpciones() {
         System.out.println("\n--- MENÚ PIZZA YUM YUM ---");
         System.out.println("1. cREAR orden");
+        System.out.println("2. Cocinar pedido");
+        System.out.println("3. Empaquetar pizza");
         System.out.println("0. Salir");
     }
 
@@ -30,6 +32,18 @@ public class CocinaView {
                         break;
                     case 1:
                         ordenView.mostrarOrdenView(scanner);
+                        break;
+                    case 2:
+                        System.out.println("inngrese el index del orden (1-5)");
+                        int indexOrden = scanner.nextInt()-1;
+                        scanner.nextLine();
+                        controller.cocinarPedido(indexOrden);
+                        break;
+                    case 3:
+                        System.out.println("Ingrese el index de la pizza a empaquetar (1-" + controller.getCocina().totalPizzas() + ")");
+                        int pizzaIndex = scanner.nextInt()-1;
+                        scanner.nextLine();
+                        controller.empaquetarPizza(pizzaIndex);
                         break;
                     default:
                         System.out.println("Opción inválida. Por favor, seleccione una opción válida.");

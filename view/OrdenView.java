@@ -18,7 +18,7 @@ public class OrdenView {
         this.controller = controller;
     }
 
-    private void showOpcionesPuntosAcceso() {
+    private void showOpcionesOrden() {
         System.out.println("\n--- Orden ---");
         System.out.println("1. Tipo de Masa");
         System.out.println("2. TIpo de Salsa");
@@ -32,9 +32,13 @@ public class OrdenView {
     private ArrayList<Toppings> toppingsSeleccionados;
 
     public void mostrarOrdenView(Scanner scanner) {
+        masaSeleccionada = Masa.NORMAL;
+        salsaSeleccionada = Salsa.NORMAL;
+        toppingsSeleccionados = new ArrayList<>();
+
         running = true;
         while(running){
-            showOpcionesPuntosAcceso();
+            showOpcionesOrden();
             seleccion = scanner.nextInt();
             scanner.nextLine();
             switch (seleccion) {
@@ -56,18 +60,25 @@ public class OrdenView {
                     scanner.nextLine();
                     break;
                 case 3:
-                    for (Toppings topping : Toppings.values()) {
-                        System.out.println(topping.ordinal()+1 + ". " + topping);
+                    for(int i = 0; i < Toppings.values().length; i++){
+                        System.out.println((i+1) + ". " + Toppings.values()[i]);
                     }
-                    this.toppingsSeleccionados.add(Toppings.values()[scanner.nextInt()-1]);
-                    scanner.nextLine();
+                    toppingsSeleccionados.add(Toppings.values()[scanner.nextInt()-1]);
+                    scanner.nextLine();                    
+                    break;
+                case 4:
+                    if(toppingsSeleccionados.isEmpty()){
+                        throw new IllegalArgumentException("Debes agregar al menos un topping");
+                    }
+                    
+                    controller.recibirOrdenCliente(masaSeleccionada, salsaSeleccionada, toppingsSeleccionados);
+                    running = false;
                     break;
                 default:
                     System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                     break;
             }
-        }
 
-        
+        }
     }
 }
